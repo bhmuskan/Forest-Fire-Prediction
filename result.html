@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body id="resultBody">
+    <div class="result-container">
+        <h2>{{ result }}</h2>
+        <a href="/" class="btn btn-primary">Try Again</a>
+    </div>
+    <div class="loader" id="loader" style="display: none;"></div>
+
+    <script>
+        
+        let prediction = "{{ result }}";
+        if (prediction.includes('Yes')) {
+            document.body.style.backgroundImage = "url('{{ url_for('static', filename='fire_forest.png') }}')";
+        } else {
+            document.body.style.backgroundImage = "url('{{ url_for('static', filename='green_forest.png') }}')";
+        }
+        document.querySelector('form').addEventListener('submit', () => {
+            document.getElementById('loader').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
